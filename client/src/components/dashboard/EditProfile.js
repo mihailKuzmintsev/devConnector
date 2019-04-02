@@ -6,7 +6,7 @@ import TextAreaFieldGroup from '../../components/common/TextAreaFieldGroup';
 import InputGroup from '../../components/common/InputGroup';
 import SelectFieldGroup from '../../components/common/SelectFieldGroup';
 import { createProfile, getCurrentProfile } from '../../actions/profileActions';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import isEmpty from '../../validation/is-empty';
 
 class CreateProfile extends Component {
@@ -61,9 +61,7 @@ class CreateProfile extends Component {
       profile.facebook = !isEmpty(profile.social.facebook)
         ? profile.social.facebook
         : '';
-      profile.linkedin = !isEmpty(profile.social.linkedin)
-        ? profile.social.linkedin
-        : '';
+      profile.vk = !isEmpty(profile.social.vk) ? profile.social.vk : '';
       profile.youtube = !isEmpty(profile.social.youtube)
         ? profile.social.youtube
         : '';
@@ -83,7 +81,8 @@ class CreateProfile extends Component {
         bio: profile.bio,
         twitter: profile.twitter,
         facebook: profile.facebook,
-        linkedin: profile.linkedin,
+        instagram: profile.instagram,
+        vk: profile.vk,
         youtube: profile.youtube,
       });
     }
@@ -160,7 +159,7 @@ class CreateProfile extends Component {
           error={errors.twitter}
         />
         <InputGroup
-          placeholder="Vk Profile URL"
+          placeholder="VK Profile URL"
           name="vk"
           icon="fab fa-vk"
           value={vk}
@@ -199,6 +198,9 @@ class CreateProfile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
+              <Link to="/dashboard" className="btn btn-lg btn-info">
+                Go Back
+              </Link>
               <h1 className="display-4 text-center">Edit Profile</h1>
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={this.onSubmit}>
